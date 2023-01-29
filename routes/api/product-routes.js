@@ -3,16 +3,34 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
 
-// get all products
-router.get('/', (req, res) => {
+//! get all products
+router.get('/', async (req, res) => {
   // find all products
-  // be sure to include its associated Category and Tag data
+  try {
+    const productData = await Product.findAll({
+      // be sure to include its associated Category and Tag data
+      include: [{model: Category}, {model: Tag,}],
+    });
+    res.status(200).json(productData);  // sends a JSON response to the client with a status code of 200 and the data stored in the productData constant. The json method is used to convert the productData object to JSON format and set the response content type to application/json
+  } catch (err) {
+    console.error(err);  // log the error message
+    res.status(500).json({error: err.message});  // return the error message in JSON format
+  }
 });
 
-// get one product
-router.get('/:id', (req, res) => {
+//! get one product
+router.get('/:id', async (req, res) => {
   // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
+  try {
+    const productData = await Product.findByPk(req.params.id, {
+      // be sure to include its associated Category and Tag data
+      include: [{model: Category}, {model: Tag}],
+    });
+    res.status(200).json(productData);  // sends a JSON response to the client with a status code of 200 and the data stored in the productData constant. The json method is used to convert the productData object to JSON format and set the response content type to application/json
+  } catch (err) {
+    console.error(err);  // log the error message
+    res.status(500).json({error: err.message});  // return the error message in JSON format
+  }
 });
 
 // create new product
@@ -89,8 +107,19 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
-  // delete one product by its `id` value
+router.delete('/:id', async (req, res) => {
+  //! delete one product by its `id` value
+  try {  // try block handles any potential errors during the execution of the code
+    const productData = await Product.destroy({  // destroy() deletes a specific Product identified by its primary key value
+      where: {  // where option is used to specify which product should be deleted based on its id
+        id: req.params.id,  // which is passed in the URL as a parameter
+      },
+    });
+    res.status(200).json(productData);  // sends a JSON response to the client with a status code of 200 and the data stored in the productData constant. The json method is used to convert the productData object to JSON format and set the response content type to application/json
+  } catch (err) {
+    console.error(err);  // log the error message
+    res.status(500).json({error: err.message});  // return the error message in JSON format
+  }
 });
 
 module.exports = router;

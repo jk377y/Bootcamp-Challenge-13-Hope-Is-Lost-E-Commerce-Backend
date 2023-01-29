@@ -11,7 +11,8 @@ router.get('/', async (req, res) => {
     });
     res.status(200).json(tagData);  // returns json data if successful
   } catch (err) {
-    res.status(500).json(err);  // if there is an error, return a status of 500 and the error message in JSON format
+    console.error(err);  // log the error message
+    res.status(500).json({error: err.message});  // return the error message in JSON format
   }
 });
 
@@ -22,8 +23,9 @@ try {  // try block handles any potential errors during the execution of the cod
     include: [{model: Product}],   // include option is used to specify that associated Product data should be included in the query results
   });
   res.status(200).json(tagData);  // returns json data if successful
-} catch(err) {
-  res.status(500).json(err);  // if there is an error, return a status of 500 and the error message in JSON format
+} catch (err) {
+  console.error(err);  // log the error message
+  res.status(500).json({error: err.message});  // return the error message in JSON format
 }
 });
 
@@ -32,8 +34,9 @@ router.post('/', async (req, res) => {
   try {  // try block handles any potential errors during the execution of the code
     const tagData = await Tag.create(req.body)  // uses create() to create a new tag in the db; req.body is used to access the data sent in the request body
     res.status(200).json(tagData)  // returns json data if successful
-  } catch {
-    res.status(400).json(err)  // if there is an error, return a status of 500 and the error message in JSON format
+  } catch (err) {
+    console.error(err);  // log the error message
+    res.status(500).json({error: err.message});  // return the error message in JSON format
   }
 });
 
@@ -46,8 +49,9 @@ router.put('/:id', async (req, res) => {
       },
     });
     res.status(200).json(tagData);  // returns json data if successful
-  } catch {
-    res.status(400).json(err);  // if there is an error, return a status of 500 and the error message in JSON format
+  } catch (err) {
+    console.error(err);  // log the error message
+    res.status(500).json({error: err.message});  // return the error message in JSON format
   }
 });
 
@@ -60,8 +64,9 @@ router.delete('/:id', async (req, res) => {
       },
     });
     res.status(200).json(tagData);  // returns json data if successful
-  } catch {
-    res.status(400).json(err);  // if there is an error, return a status of 500 and the error message in JSON format
+  } catch (err) {
+    console.error(err);  // log the error message
+    res.status(500).json({error: err.message});  // return the error message in JSON format
   }
 });
 
