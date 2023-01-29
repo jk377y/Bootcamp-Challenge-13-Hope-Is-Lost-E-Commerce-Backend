@@ -3,7 +3,7 @@ const { Tag, Product, ProductTag } = require('../../models');
 
 // The `/api/tags` endpoint
 
-// GET route to retreive ALL tags from db
+//! GET route to retreive ALL tags from db
 router.get('/', async (req, res) => {
   try {  // try block handles any potential errors during the execution of the code
     const tagData = await Tag.findAll({  // findAll() provided used to retrieve all tags from the database
@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET route to retreive a single tag from the db
+//! GET route to retreive a single tag from the db
 router.get('/:id', async (req, res) => {
 try {  // try block handles any potential errors during the execution of the code
   const tagData = await Tag.findByPk(req.params.id, {  // findByPk() provided used to retrieve a single tag from the database
@@ -27,7 +27,7 @@ try {  // try block handles any potential errors during the execution of the cod
 }
 });
 
-// POST route to create a new tag in the db
+//! POST route to create a new tag in the db
 router.post('/', async (req, res) => {
   try {  // try block handles any potential errors during the execution of the code
     const tagData = await Tag.create(req.body)  // uses create() to create a new tag in the db; req.body is used to access the data sent in the request body
@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// PUT route to update a specific tag in the db
+//! PUT route to update a specific tag in the db
 router.put('/:id', async (req, res) => {
   try {  // try block handles any potential errors during the execution of the code
     const tagData = await Tag.update(req.body, {  // uses update() to update a specific tag; req.body is used to access the data sent in the request body
@@ -51,7 +51,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// DELETE route to delete a specific id
+//! DELETE route to delete a specific id
 router.delete('/:id', async (req, res) => {
   try {  // try block handles any potential errors during the execution of the code
     const tagData = await Tag.destroy({  // destroy() deletes a specific tag identified by its primary key value
