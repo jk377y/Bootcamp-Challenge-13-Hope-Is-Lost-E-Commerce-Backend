@@ -10,36 +10,36 @@ class Product extends Model {}
 Product.init(
   {
     //! define columns
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
+    id: {  // column labeled id
+      type: DataTypes.INTEGER,  // is an integer
+      allowNull: false,  // cannot be null
+      primaryKey: true,  // is primary key
+      autoIncrement: true,  // auto increments
     },
-    product_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
+    product_name: {  // column labeled product_name
+      type: DataTypes.STRING,  // is a string
+      allowNull: false,  // cannot be null
     },
-    price: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-      validate: {
-        isDecimal: true,
+    price: {  // column labeled price
+      type: DataTypes.DECIMAL(10, 2),  // A decimal column with a precision of 10 and a scale of 2 (meaning 10 digits total with 2 coming after the decimal point.  largest possible number would be 99999999.99)
+      allowNull: false,  // cannot be null
+      validate: {  // has a validation rule
+        isDecimal: true,  // rule is that price must be a decimal value
       },
     },
-    stock: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 10,
-      validate: {
-        isNumeric: true,
+    stock: {  // column labeled stock
+      type: DataTypes.INTEGER,  // is an integer
+      allowNull: false,  // cannot be null
+      defaultValue: 10,  // quantity set to 10 by default
+      validate: {  // has a validation rule
+        isNumeric: true,  // rule is that stock must be a numeric value
       },
     },
-    category_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'category',
-        key: 'id',
+    category_id: {  // column labeled category_id
+      type: DataTypes.INTEGER,  // is an integer
+      references: {  // category_id will be a foreign key
+        model: 'category',  // that references the category model
+        key: 'id',  // in the id column.... category.id
       },
     },
   },
