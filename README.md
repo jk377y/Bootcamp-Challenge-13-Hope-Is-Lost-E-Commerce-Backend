@@ -63,7 +63,7 @@ The PUT route will allow you to change data in the database that already exists.
 <br><br>
 <img src="./images/putRoute.JPG" alt="screenshot of using a PUT route in Insomnia" width=800px>
 <br><br>
-The DELETE route will all you to delete data from the database.
+The DELETE route will allow you to delete data from the database.
 <br><br>
 <img src="./images/deleteRoute.JPG" alt="screenshot of using a DELETE route in Insomnia" width=800px>
 <br><br>
