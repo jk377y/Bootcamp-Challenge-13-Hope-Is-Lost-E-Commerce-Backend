@@ -70,7 +70,7 @@ The DELETE route will allow you to delete data from the database.
 
 ## Questions
 For Questions, I can be reached at the following:
-<br>GitHub:  https://github.com/jk377y
+<br>GitHub:  <a href ="https://github.com/jk377y" target="_blank">@ JK377y</a>
 <br>OR
 <br>Email:  jk377y@gmail.com
 <br>
