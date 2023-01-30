@@ -30,34 +30,43 @@ The packages that will be imported are:
 ## Usage
 
 <br>A demo of the application can be viewed here:
-<br>www.google.com
+<br>https://www.google.com
 <br>The source code for the application can be viewed here:
 <br>https://github.com/jk377y/hope-is-lost-ecomm-backend
 
 <br>
 To start the program, open the command terminal from the root directory.
 <br>
-1) First we need to login, access and use our database:
-<br>
+First we need to login, access and use our database:
+<br><br>
 <img src="./images/dbConnect.JPG" alt="screenshot of mysql login with USE command for the ecommerce_db" width=800px>
 <br>
-2) Next we will need to provide some initial data by seeding the database:
-<br>
+Next we will need to provide some initial data by seeding the database:
+<br><br>
 <img src="./images/runSeed.JPG" alt="screenshot of seeding the ecommerce_db" width=800px>
 <br>
-3) Then we will need to connect to our server by typing [npm run watch]:
-<br>
+Then we will need to connect to our server by typing [npm run watch]:
+<br><br>
 <img src="./images/runWatch.JPG" alt="screenshot of connecting to the local host server" width=800px>
-<br>
-4) From here you will be able to access the database through route commands by using Insomnia
-<br>
+<br><br>
+Once connected, you will be able to access/edit the database through route commands by using Insomnia
+<br><br>
+The GET route will retreive data from the database.
+<br><br>
 <img src="./images/getRoute.JPG" alt="screenshot of using a GET route in Insomnia" width=800px>
-<br>
+<br><br>
+The POST route will add data to the database.
+<br><br>
 <img src="./images/postRoute.JPG" alt="screenshot of using a POST route in Insomnia" width=800px>
-<br>
+<br><br>
+The PUT route will allow you to change data in the database that already exists.
+<br><br>
 <img src="./images/putRoute.JPG" alt="screenshot of using a PUT route in Insomnia" width=800px>
-<br><img src="./images/deleteRoute.JPG" alt="screenshot of using a DELETE route in Insomnia" width=800px>
-<br>
+<br><br>
+The DELETE route will all you to delete data from the database.
+<br><br>
+<img src="./images/deleteRoute.JPG" alt="screenshot of using a DELETE route in Insomnia" width=800px>
+<br><br>
 
 ## Questions
 For Questions, I can be reached at the following:
