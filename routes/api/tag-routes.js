@@ -7,8 +7,8 @@ const { Tag, Product, ProductTag } = require('../../models');
 router.get('/', async (req, res) => {  // router is an instance of Express Router, "get" means it is retreiving data, "/" is the endpoint, this will be an async function
   try {  // try block handles any potential errors during the execution of the code
     const tagData = await Tag.findAll({  // findAll() provided used to retrieve all tags from the database
-      include: [{model: Product,}],   // include option is used to specify that associated Product data should be included in the query results
-    });
+      include: [{model: Product, attributes: ['id', 'product_name', 'price', 'stock', 'category_id']}],   // include option is used to specify that associated Product data should be included in the query results
+    });  // the attribute array is not necessary, but it is included to limit the data returned to the client, can be used to refine query results
     res.status(200).json(tagData);  // returns json data if successful
   } catch (err) {  // if an error occurs above, this will store the error in a variable named err
     console.error(err);  // log the error message
@@ -20,8 +20,8 @@ router.get('/', async (req, res) => {  // router is an instance of Express Route
 router.get('/:id', async (req, res) => {  // router is an instance of Express Router, "get" means it is retreiving data, "/:id" is requesting a specific item in the endpoint, this will be an async function
 try {  // try block handles any potential errors during the execution of the code
   const tagData = await Tag.findByPk(req.params.id, {  // findByPk() provided used to retrieve a single tag from the database
-    include: [{model: Product}],   // include option is used to specify that associated Product data should be included in the query results
-  });
+    include: [{model: Product, attributes: ['id', 'product_name', 'price', 'stock', 'category_id']}],   // include option is used to specify that associated Product data should be included in the query results
+  });  // the attribute array is not necessary, but it is included to limit the data returned to the client, can be used to refine query results
   res.status(200).json(tagData);  // returns json data if successful
 } catch (err) {  // if an error occurs above, this will store the error in a variable named err
   console.error(err);  // log the error message

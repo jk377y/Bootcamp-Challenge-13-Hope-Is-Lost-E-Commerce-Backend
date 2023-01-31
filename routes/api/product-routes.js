@@ -9,7 +9,8 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 router.get('/', async (req, res) => {  // router is an instance of Express Router, "get" means it is retreiving data, "/" is the endpoint, this will be an async function
   try {  // try block should handle any errors that occur within this block of code
     const productData = await Product.findAll({  // declares a constant variable named productData and assigns the result of calling the Product.findAll() method to it
-      include: [{model: Category}, {model: Tag,}],  // specifies that the Category and Tag data should be included in the retrieval
+      attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],  // the attribute array is not necessary, but it is included to limit the data returned to the client, can be used to refine query results
+      include: [{model: Category, attributes: ['category_name']}, {model: Tag, attributes: ['tag_name']}],  // specifies that the Category and Tag data should be included in the retrieval
     });
     res.status(200).json(productData);  // json(productData) method is then used to send a JSON response to the client, with the retrieved data productData as the response body
   } catch (err) {  // if an error occurs above, this will store the error in a variable named err
@@ -24,7 +25,8 @@ router.get('/', async (req, res) => {  // router is an instance of Express Route
 router.get('/:id', async (req, res) => {  // router is an instance of Express Router, "get" means it is retreiving data, "/:id" is requesting a specific item in the endpoint, this will be an async function
   try {  // try block should handle any errors that occur within this block of code
     const productData = await Product.findByPk(req.params.id, {  // retrieves the product data from the database using the Sequelize findByPk method (primary key)
-      include: [{model: Category}, {model: Tag}],  // specifies that the Category and Tag data should be included in the retrieval
+      attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],  // the attribute array is not necessary, but it is included to limit the data returned to the client, can be used to refine query results
+      include: [{model: Category, attributes: ['category_name']}, {model: Tag, attributes: ['tag_name']}],  // specifies that the Category and Tag data should be included in the retrieval
     });
     res.status(200).json(productData);  // sends a JSON response to the client with a status code of 200 and the data stored in the productData constant. The json method is used to convert the productData object to JSON format and set the response content type to application/json
   } catch (err) {  // if an error occurs above, this will store the error in a variable named err

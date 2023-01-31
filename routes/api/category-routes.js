@@ -8,8 +8,8 @@ const { Category, Product } = require('../../models');
 router.get('/', async (req, res) => {  // router is an instance of Express Router, "get" means it is retreiving data, "/" is the endpoint, this will be an async function
   try {  // try block should handle any errors that occur within this block of code
     const categoryData = await Category.findAll({  // declares a constant variable named categoryData and assigns the result of calling the Category.findAll() method to it
-      include: [{model: Product},],  // this line is within the options object passed to the Category.findAll() method. The include property is an array of related models to be included in the results. In this case, it includes the Product model, which is associated with the Category model
-    });
+      include: [{model: Product, attributes: ['id', 'product_name', 'price', 'stock', 'category_id']}],  // this line is within the options object passed to the Category.findAll() method. The include property is an array of related models to be included in the results. In this case, it includes the Product model, which is associated with the Category model
+    });  // the attribute array is not necessary, but it is included to limit the data returned to the client, can be used to refine query results
     res.status(200).json(categoryData);  // json(categoryData) method is then used to send a JSON response to the client, with the retrieved data categoryData as the response body
   } catch (err) {  // if an error occurs above, this will store the error in a variable named err
     console.error(err);  // log the error message
@@ -22,8 +22,8 @@ router.get('/', async (req, res) => {  // router is an instance of Express Route
 router.get('/:id', async (req, res) => {  // router is an instance of Express Router, "get" means it is retreiving data, "/:id" is requesting a specific item in the endpoint, this will be an async function
   try {  // try block should handle any errors that occur within this block of code
     const categoryData = await Category.findByPk(req.params.id, {  // retrieves the category data from the database using the Sequelize findByPk method
-      include: [{model: Product},],  // specifies that the related products should also be included in the query and returned with the category data. model: Product is a reference to the Sequelize model that represents the products
-    });
+      include: [{model: Product, attributes: ['id', 'product_name', 'price', 'stock', 'category_id']}],  // specifies that the related products should also be included in the query and returned with the category data. model: Product is a reference to the Sequelize model that represents the products
+    });  // the attribute array is not necessary, but it is included to limit the data returned to the client, can be used to refine query results
     res.status(200).json(categoryData);  // json(categoryData) method is then used to send a JSON response to the client, with the retrieved data categoryData as the response body
   } catch (err) {  // if an error occurs above, this will store the error in a variable named err
     console.error(err);  // log the error message
