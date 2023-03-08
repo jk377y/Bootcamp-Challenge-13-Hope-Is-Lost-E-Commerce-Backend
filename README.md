@@ -30,7 +30,7 @@ The packages that will be imported are:
 ## Usage
 
 <br>A demo of the application can be viewed here:
-<br>https://www.google.com
+<br>https://drive.google.com/file/d/1zHgSKQft9Vsuqbi4qznfZ3LQwc_NXZWD/view
 <br>The source code for the application can be viewed here:
 <br>https://github.com/jk377y/hope-is-lost-ecomm-backend
 
