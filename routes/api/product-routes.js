@@ -7,15 +7,15 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 //! find all products
 //! be sure to include its associated Category and Tag data
 router.get('/', async (req, res) => {  // router is an instance of Express Router, "get" means it is retreiving data, "/" is the endpoint, this will be an async function
-  try {  // try block should handle any errors that occur within this block of code
+  try {
     const productData = await Product.findAll({  // declares a constant variable named productData and assigns the result of calling the Product.findAll() method to it
-      attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],  // the attribute array is not necessary, but it is included to limit the data returned to the client, can be used to refine query results
+      attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
       include: [{model: Category, attributes: ['category_name']}, {model: Tag, attributes: ['tag_name']}],  // specifies that the Category and Tag data should be included in the retrieval
     });
-    res.status(200).json(productData);  // json(productData) method is then used to send a JSON response to the client, with the retrieved data productData as the response body
-  } catch (err) {  // if an error occurs above, this will store the error in a variable named err
-    console.error(err);  // log the error message
-    res.status(500).json({error: err.message});  // return the error message in JSON format
+    res.status(200).json(productData);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({error: err.message});
   }
 });
 
@@ -23,15 +23,15 @@ router.get('/', async (req, res) => {  // router is an instance of Express Route
 //! find a single product by its `id`
 //! be sure to include its associated Category and Tag data
 router.get('/:id', async (req, res) => {  // router is an instance of Express Router, "get" means it is retreiving data, "/:id" is requesting a specific item in the endpoint, this will be an async function
-  try {  // try block should handle any errors that occur within this block of code
+  try {
     const productData = await Product.findByPk(req.params.id, {  // retrieves the product data from the database using the Sequelize findByPk method (primary key)
-      attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],  // the attribute array is not necessary, but it is included to limit the data returned to the client, can be used to refine query results
+      attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
       include: [{model: Category, attributes: ['category_name']}, {model: Tag, attributes: ['tag_name']}],  // specifies that the Category and Tag data should be included in the retrieval
     });
-    res.status(200).json(productData);  // sends a JSON response to the client with a status code of 200 and the data stored in the productData constant. The json method is used to convert the productData object to JSON format and set the response content type to application/json
-  } catch (err) {  // if an error occurs above, this will store the error in a variable named err
-    console.error(err);  // log the error message
-    res.status(500).json({error: err.message});  // return the error message in JSON format
+    res.status(200).json(productData);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({error: err.message});
   }
 });
 
@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
       product_name: "Basketball",
       price: 200.00,
       stock: 3,
-      tagIds: [1, 2, 3, 4]  //! <=====
+      tagIds: [1, 2, 3, 4]  //! <===== use this format in Insomnia for products POST route
     }
   */
   Product.create(req.body)
@@ -111,16 +111,16 @@ router.put('/:id', (req, res) => {
 
 //! delete one product by its `id` value
 router.delete('/:id', async (req, res) => {  // router is an instance of Express Router, "delete" means it is deleting existing data, "/:id" is the endpoint that is specifying which item to delete, this will be an async function
-  try {  // try block handles any potential errors during the execution of the code
+  try {
     const productData = await Product.destroy({  // destroy() deletes a specific Product identified by its primary key value
       where: {  // where option is used to specify which product should be deleted based on its id
         id: req.params.id,  // this is the id that will be deleted, which is passed from the URL as a parameter
       },
     });
-    res.status(200).json(productData);  // sends a JSON response to the client with a status code of 200 and the data stored in the productData constant. The json method is used to convert the productData object to JSON format and set the response content type to application/json
-  } catch (err) {  // try block should handle any errors that occur within this block of code
-    console.error(err);  // log the error message
-    res.status(500).json({error: err.message});  // return the error message in JSON format
+    res.status(200).json(productData);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({error: err.message});
   }
 });
 
